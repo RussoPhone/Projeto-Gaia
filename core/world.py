@@ -14,7 +14,12 @@ class GW:
                 lines = []
                 
                 for row in self.tiles:
-                    line = "".join(row)
+
+                    symbols = []
+
+                    for tile in row:
+                         symbols.append(tile.symbol)
+                    line = "".join(symbols)
                     lines.append(line)
                 return "\n".join(lines)
     

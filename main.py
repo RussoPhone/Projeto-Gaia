@@ -1,11 +1,9 @@
 from core.world import GW
-from core.tile import STONE
+from core.tile import FLOOR, STONE, WATER
 
-world = GW(5, 3)
-world.set_tile(2, 1, STONE)
-print(world.render_text())
-print(world.get_tile(2, 1))
-
-print(world.is_inside(2, 1))
-print(world.is_inside(5, 1))
-print(world.is_inside(4, 2))
+world = GW(12, 6)
+world.set_tile(1, 0, STONE)
+world.set_tile(2, 0, STONE)
+world.set_tile(3, 0, STONE)
+print(world.get_tile(1, 0).tile_type)
+print(world.get_tile(1, 0).symbol)

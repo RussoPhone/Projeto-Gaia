@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Arquivos locais
+.env
+*.log
+
+# Notas locais
+futuridade.md

@@ -3,6 +3,6 @@ class Tile:
         self.tile_type = tile_type
         self.symbol = symbol
 
-FLOOR = Tile("floor", ".")
+GRASS = Tile("grass", ".")
 STONE = Tile("stone", "^")
 WATER = Tile("water", "~")

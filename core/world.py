@@ -1,6 +1,6 @@
 from core.tile import GRASS
 
-class world:
+class World:
     def __init__(self, width, height, default_tile=GRASS):
         self.width = width
         self.height = height
@@ -50,15 +50,17 @@ class world:
         for current_y in range(y, y + height):
             for current_x in range(x, x + width):
                 self.set_tile(current_x, current_y, tile)
+
+
     def fill(self, tile):
-            for y in range(self.height):
-                for x in range(self.width):
-                        self.set_tile(x, y, tile)
+        for y in range(self.height):
+            for x in range(self.width):
+                self.set_tile(x, y, tile)
 
     def border_tile(self, tile):
-            for x in range(self.width):
-                    self.set_tile(x, 0, tile)
-                    self.set_tile(x, self.height - 1, tile)
+        for x in range(self.width):
+            self.set_tile(x, 0, tile)
+            self.set_tile(x, self.height - 1, tile)
 
             for y in range(self.height):
                 self.set_tile(0, y, tile)

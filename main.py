@@ -1,10 +1,28 @@
-from core.world import world
-from core.tile import GRASS, STONE, WATER
+import os
+import time as pytime
+from core.gtime import Gtime
+from core.world import World
+from core.sky import Sky
+from core.renderer import Renderer
 
-world = world(20, 10, GRASS)
+simulation_duration = 120
+frame_delay = 0.5
 
-world.fill(GRASS)
-world.fill_rect(13, 1, 6, 4, STONE)
-world.border_tile(STONE)
+time=Gtime(24)
+sky=Sky(cycle_length=24)
+mundo=World(20, 10)
+renderer = Renderer()
 
-print(world.render_debug())
+for i in range(48):
+    os.system("clear")
+
+    light = sky.get_light(time)
+
+    print(time.debug_text())
+    print(sky.debug_text(time))
+    print()
+    print(renderer.render_lit(mundo, light))
+
+    pytime.sleep(frame_delay)
+    time.adv()
+

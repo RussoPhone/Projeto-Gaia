@@ -4,6 +4,7 @@ class World: #Aqui fica o mundo gerado. Diferente do renderer, esse aqui é com 
     def __init__(self, width, height, default_tile=GRASS): #pode alterar a default_tile se necessario pra outra coisa
         self.width = width
         self.height = height
+        self.entities = []
         self.tiles = [
             [default_tile for x in range(width)]
             for y in range(height)
@@ -74,3 +75,17 @@ class World: #Aqui fica o mundo gerado. Diferente do renderer, esse aqui é com 
     #pra saber se algo está detro do mundo.
     def is_inside(self, x, y):
         return x >= 0 and x < self.width and y >= 0 and y < self.height
+
+    def add_entity(self, entity):
+        if not self.is_inside(entity.x, entity.y):
+            raise ValueError(f"entidade fora do mundo: x={entity.x}, y={entity.y}")
+
+        self.entities.append(entity)
+
+    def get_entity_at(self, x, y):
+        for entity in self.entities:
+            if entity.x == x and entity.y == y:
+                return entity
+        return None
+
+

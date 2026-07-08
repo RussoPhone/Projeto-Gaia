@@ -88,4 +88,21 @@ class World: #Aqui fica o mundo gerado. Diferente do renderer, esse aqui é com 
                 return entity
         return None
 
+    def move_entity(self, entity, dx, dy):
+        new_x = entity.x + dx
+        new_y = entity.y + dy
+
+        if not self.is_inside(new_x, new_y):
+            return False
+
+        target_entity = self.get_entity_at(new_x, new_y)
+
+        if target_entity is not None and target_entity is not entity:
+            return False
+
+        entity.x = new_x
+        entity.y = new_y
+
+        return True
+
 

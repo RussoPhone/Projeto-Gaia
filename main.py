@@ -9,7 +9,6 @@ world = World(20, 10)
 
 entity = Entity("maria", "@", 10, 5)
 world.add_entity(entity)
-world.move_entity(entity, 2, 0)
 sky = Sky()
 
 renderer = Renderer()
@@ -24,5 +23,5 @@ simulation = Simulation(
     simulation_duration=120,
     frame_delay=0.05
 )
-
 simulation.run()
+

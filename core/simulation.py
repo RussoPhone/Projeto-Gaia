@@ -1,5 +1,6 @@
 import os
 import time
+from core.tile import WATER, FOOD, GRASS
 
 class Simulation: #È aqui que fica os parametros da simulação.
     def __init__(self, world, sky, renderer, gtime, simulation_duration=120, frame_delay=0.05):
@@ -25,13 +26,38 @@ class Simulation: #È aqui que fica os parametros da simulação.
             entity.update_needs()
 
             if entity.needs_action():
-                self.world.move_entity(entity, 1, 0)
+                moved = False
+
+                for dx, dy in directions:
+                    moved = self.world.move_entity(entity, dx, dy)
+
+                    if moved:
+                        entity.record_action(f"moved ({dx}, {dy})")
+                        break
+
+                if not moved:
+                    entity.record_action("tried to move")
+
+        current_tile = self.world.get_tile(entity.x, entity.y)
+
+        self.apply_environment_effects(entity)
+
+    def apply_environment_effects(self, entity):
+        current_tile = self. world.get_tile(entity.x, entity.y)
+
+        if current_tile == WATER:
+            entity.drink()
+
+        if current_tile == FOOD:
+            entity.eat()
+            self.world.set_tile(entity.x, entity.y, GRASS)
+
 
     def run(self):
         while self.gtime.mtk < self.simulation_duration:
             self.clear_screen()
             #atualiza o estados de uma entidade
-            self.update_entities
+            self.update_entities()
             #mostra estado atual do mundo
             self.render()
 

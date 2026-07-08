@@ -6,3 +6,4 @@ class Tile: #aqui fica os tiles. As peças no tabuleiro.
 GRASS = Tile("grass", ".")
 STONE = Tile("stone", "^")
 WATER = Tile("water", "~")
+FOOD = Tile("food", "*")

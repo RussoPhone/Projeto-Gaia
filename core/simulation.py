@@ -23,7 +23,7 @@ class Simulation: #È aqui que fica os parametros da simulação.
             (0, -1), #cima
             ]
         for entity in self.world.entities:
-            entity.update_needs()
+            entity.update(self.world)
 
             if entity.needs_action():
                 moved = False
@@ -42,7 +42,7 @@ class Simulation: #È aqui que fica os parametros da simulação.
 
         self.apply_environment_effects(entity)
 
-    def apply_environment_effects(self, entity):
+    def apply_environment_effects(self, entity): #Aplica efeitos no ambiente
         current_tile = self. world.get_tile(entity.x, entity.y)
 
         if current_tile == WATER:

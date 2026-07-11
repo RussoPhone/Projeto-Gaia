@@ -38,9 +38,7 @@ class Simulation: #È aqui que fica os parametros da simulação.
                 if not moved:
                     entity.record_action("tried to move")
 
-        current_tile = self.world.get_tile(entity.x, entity.y)
-
-        self.apply_environment_effects(entity)
+            self.apply_environment_effects(entity)
 
     def apply_environment_effects(self, entity): #Aplica efeitos no ambiente
         current_tile = self. world.get_tile(entity.x, entity.y)

@@ -29,3 +29,9 @@ class Body:
 
         if self.hunger < 0:
             self.hunger = 0
+
+    def needs_action(self): #função que desperta ação
+        if not self.body.alive:
+            return False
+
+        return self.body.hunger >= 50 or self.body.thirst >= 50

@@ -1,5 +1,7 @@
 from core.world import World
 from core.entity import Entity
+from core.organism import Organism
+from core.body import Body
 from core.sky import Sky
 from core.renderer import Renderer
 from core.gtime import Gtime
@@ -9,8 +11,8 @@ from core.tile import WATER, FOOD
 world = World(20, 10)
 world.set_tile(15, 5, WATER)
 world.set_tile(18, 5, FOOD)
-entity = Entity("maria", "@", 10, 5)
-world.add_entity(entity)
+organism = Organism("maria", "@", 10, 5)
+world.add_entity(organism)
 sky = Sky()
 
 renderer = Renderer()

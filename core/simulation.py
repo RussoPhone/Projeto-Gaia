@@ -1,5 +1,6 @@
 import os
 import time
+from core.organism import Organism
 from core.tile import WATER, FOOD, GRASS
 
 class Simulation: #È aqui que fica os parametros da simulação.
@@ -23,7 +24,8 @@ class Simulation: #È aqui que fica os parametros da simulação.
             (0, -1), #cima
             ]
         for entity in self.world.entities:
-            entity.update(self.world)
+            if isinstance(entity, Organism):
+                entity.update(self.world)
 
             if entity.needs_action():
                 moved = False

@@ -69,7 +69,6 @@ class Simulation: #È aqui que fica os parametros da simulação.
         self.apply_environment_effects(entity)
 
     def perceive(self, entity):
-
         return None
 
     def decide_action(self, entity, perception):

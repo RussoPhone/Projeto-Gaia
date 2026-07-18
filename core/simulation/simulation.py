@@ -2,7 +2,7 @@ import os
 import time
 from core.being.organism import Organism
 from core.ambient.tile import WATER, FOOD, GRASS
-
+from core.systems.environment_system import EnvironmentSystem
 class Simulation: #È aqui que fica os parametros da simulação.
     def __init__(self, world, sky, renderer, gtime, simulation_duration=120, frame_delay=0.05):
         self.world = world
@@ -11,6 +11,8 @@ class Simulation: #È aqui que fica os parametros da simulação.
         self.gtime = gtime
         self.simulation_duration = simulation_duration
         self.frame_delay = frame_delay
+        self.environment_system = EnvironmentSystem()
+
 
     def clear_screen(self): #Limpa a tela
         os.system("cls" if os.name == "nt" else "clear")
@@ -41,17 +43,8 @@ class Simulation: #È aqui que fica os parametros da simulação.
                     if not moved:
                         entity.record_action("tried to move")
 
-                self.apply_environment_effects(entity)
+                self.environment_system.apply(self, entity)
 
-    def apply_environment_effects(self, entity): #Aplica efeitos no ambiente
-        current_tile = self. world.get_tile(entity.x, entity.y)
-
-        if current_tile == WATER:
-            entity.drink()
-
-        if current_tile == FOOD:
-            entity.eat()
-            self.world.set_tile(entity.x, entity.y, GRASS)
     def process_entity(self, entity):
         if not isinstance(entity, Organism):
             return
@@ -66,7 +59,7 @@ class Simulation: #È aqui que fica os parametros da simulação.
             applied = self.act(entity, action)
 
             entity.record_action(applied)
-        self.apply_environment_effects(entity)
+        self.environment_system.apply(self, entity)
 
     def perceive(self, entity):
         return None

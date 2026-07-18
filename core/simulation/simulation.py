@@ -1,7 +1,7 @@
 import os
 import time
-from core.organism import Organism
-from core.tile import WATER, FOOD, GRASS
+from core.being.organism import Organism
+from core.ambient.tile import WATER, FOOD, GRASS
 
 class Simulation: #È aqui que fica os parametros da simulação.
     def __init__(self, world, sky, renderer, gtime, simulation_duration=120, frame_delay=0.05):

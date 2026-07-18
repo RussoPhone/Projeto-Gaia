@@ -1,5 +1,5 @@
-from core.entity import Entity
-from core.body import Body
+from core.being.entity import Entity
+from core.being.body import Body
 
 
 class Organism(Entity):

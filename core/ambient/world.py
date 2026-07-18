@@ -1,4 +1,4 @@
-from core.tile import GRASS
+from core.ambient.tile import GRASS
 
 class World: #Aqui fica o mundo gerado. Diferente do renderer, esse aqui é com variaveis pra construir o mundo. Pense em geografia.
     def __init__(self, width, height, default_tile=GRASS): #pode alterar a default_tile se necessario pra outra coisa

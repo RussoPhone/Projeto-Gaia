@@ -1,8 +1,8 @@
-from core.sensor import Sensor
-from core.spatial import Spatial
+from core.sense.sensor import Sensor
+from core.sense.spatial import Spatial
 
 def test_percebe_algo_na_frente():
-    sensor = sensor(range_=5)
+    sensor = Sensor(range_=5)
     orientation = (0, -1)
     na_frente = Spatial(5, 5, 5, 2)
 

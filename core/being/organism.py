@@ -6,7 +6,7 @@ class Organism(Entity):
     def __init__(self, name, symbol, x, y, perception=None, decision=None, memory=None):
         super().__init__(name, symbol, x, y)
 
-        self.body = body #Necessidades, vida e morte
+        self.body = Body() #Necessidades, vida e morte
         self.memory = memory #padrões aprendido, inc futuro
         self.decision_system = decision #escolha de ação, inc futura
         self.perception = perception

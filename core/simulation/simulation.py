@@ -81,7 +81,13 @@ class Simulation: #È aqui que fica os parametros da simulação.
 
     def step(self):
         for entity in self.world.entities:
-            self.process_entity(entity)
+            entity.update_body(world)
+            perception = entity.perceive(world)
+            action = entity.choose_action(action)
+            result = world.execute(action)
+            entity.apply_result(result)
+            entity.record(result)
+            # self.process_entity(entity)
 
         self.gtime.adv()
 

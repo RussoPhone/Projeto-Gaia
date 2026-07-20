@@ -12,3 +12,4 @@ config = ScenarioConfig(
 
 simulation = build_scenario(config)
 simulation.run()
+#Semana 1 concluida!

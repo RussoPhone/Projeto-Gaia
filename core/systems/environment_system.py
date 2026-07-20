@@ -1,4 +1,3 @@
-from core.being.body import Body
 from core.ambient.tile import FOOD, GRASS, WATER
 
 class EnvironmentSystem:
@@ -7,15 +6,14 @@ class EnvironmentSystem:
 
     #Classe pra sistema de efeitos no ambiente
     def apply(self, simulation, entity):
-        self.body = Body()
         current_tile = simulation.world.get_tile(
             entity.x,
             entity.y
         )
 
         if current_tile == WATER:
-            self.body.drink()
+            entity.body.drink()
 
         if current_tile == FOOD:
-            self.body.eat()
+            entity.body.eat()
             simulation.world.set_tile(entity.x, entity.y, GRASS)

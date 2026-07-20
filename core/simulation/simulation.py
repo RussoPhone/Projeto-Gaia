@@ -17,34 +17,6 @@ class Simulation: #È aqui que fica os parametros da simulação.
     def clear_screen(self): #Limpa a tela
         os.system("cls" if os.name == "nt" else "clear")
 
-    #metodo pra atualizar entidades na simulação
-    def update_entities(self):
-        directions = [
-            (1, 0), #direita
-            (-1, 0), #esquerda
-            (0, 1), #baixo
-            (0, -1), #cima
-            ]
-        for entity in self.world.entities:
-
-            if isinstance(entity, Organism):
-                entity.update(self.world)
-
-                if entity.needs_action():
-                    moved = False
-
-                    for dx, dy in directions:
-                        moved = self.world.move_entity(entity, dx, dy)
-
-                        if moved:
-                            entity.record_action(f"moved ({dx}, {dy})")
-                            break
-
-                    if not moved:
-                        entity.record_action("tried to move")
-
-                self.environment_system.apply(self, entity)
-
     def process_entity(self, entity):
         if not isinstance(entity, Organism):
             return
@@ -81,22 +53,18 @@ class Simulation: #È aqui que fica os parametros da simulação.
 
     def step(self):
         for entity in self.world.entities:
-            entity.update_body(world)
-            perception = entity.perceive(world)
-            action = entity.choose_action(action)
-            result = world.execute(action)
-            entity.apply_result(result)
-            entity.record(result)
-            # self.process_entity(entity)
+            self.process_entity(entity)
 
         self.gtime.adv()
 
     def run(self):
         while self.gtime.mtk < self.simulation_duration:
-            self.clear_screen()
             self.step()
-            self.render()
-            time.sleep(self.frame_delay)
+
+            if render_enabled:
+                self.clear_screen()
+                self.render()
+                time.sleep(self.frame_delay)
 
 
     def render(self):

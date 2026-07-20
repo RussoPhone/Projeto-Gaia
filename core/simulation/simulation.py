@@ -57,7 +57,7 @@ class Simulation: #È aqui que fica os parametros da simulação.
 
         self.gtime.adv()
 
-    def run(self):
+    def run(self, render_enabled=True):
         while self.gtime.mtk < self.simulation_duration:
             self.step()
 

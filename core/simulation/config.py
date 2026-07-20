@@ -1,4 +1,4 @@
-from dataclasses import dataclasses
+from dataclasses import dataclass
 
 @dataclass
 class ScenarioConfig: #Config central de um cenario de simulação

@@ -20,7 +20,7 @@ def build_scenario(config): #monta um cenario completo a partir da scenarioconfi
     world.set_tile(food_x, mid_y, FOOD)
 
     for i in range(config.num_organism):
-        x = random.radint(0, config.world_width -1)
+        x = random.randint(0, config.world_width -1)
         y = random.randint(0, config.world_height -1)
         organism = Organism(f"gaiano_{i}", "@", x, y)
         world.add_entity(organism)
@@ -30,12 +30,12 @@ def build_scenario(config): #monta um cenario completo a partir da scenarioconfi
     gtime = Gtime(mtksptk=config.mtksptk)
 
     simulation = Simulation(
-        world=World
-        sky=Sky
-        renderer=renderer
-        gtime=gtime
+        world=world,
+        sky=sky,
+        renderer=renderer,
+        gtime=gtime,
         simulation_duration=config.simulation_duration,
         frame_delay=config.frame_delay,
         )
 
-    return Simulation
+    return simulation

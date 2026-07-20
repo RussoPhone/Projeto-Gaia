@@ -1,5 +1,5 @@
 class Spatial:
-    def __init__(self, origin_x, origin_y, target_x, targety_y):
+    def __init__(self, origin_x, origin_y, target_x, target_y):
         self.dx = target_x - origin_x
         self.dy = target_y - origin_y
 

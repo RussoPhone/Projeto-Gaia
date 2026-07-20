@@ -7,7 +7,7 @@ class Sensor:
     def can_perceive(self, spatial, orientation, light=1.0):
         effective_range = self.range_ * light if self.requires_light else self.range_
 
-        if spatial.distance(): > effective_range
+        if spatial.distance() > effective_range
         return False
 
         if spatial.same_position():

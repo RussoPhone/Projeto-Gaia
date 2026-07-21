@@ -16,7 +16,47 @@ class Simulation: #È aqui que fica os parametros da simulação.
 
     def clear_screen(self): #Limpa a tela
         os.system("cls" if os.name == "nt" else "clear")
+    
+    def capture_state(self, entity):
+        return {
+            "x": entity.x, "y": entity.y,
+            "hunger": entity.body.hunger,
+            "thirst": entity.body.thirst,
+            "alive": entity.body.alive,
 
+        }
+    def body_reason(self, entity):
+        fome = entity.body.hunger >= 50
+        sede = entity.body.thirst >=50
+        if fome and sede: return "fome e sede"
+        elif fome: return "fome"
+        elif sede: return "sede"
+        return "nenhum"
+
+    def process_entity(self, entity):
+        if not isinstance(entity, Organism):
+            return
+        entity.update(self.world)
+        perception = self.perceive(entity)
+
+        if entity.needs_action():
+            state_before = self.capture_state(entity)
+            reason = self.body_reason(entity)
+
+            action = self.decide_action(entity, perception)
+            applied = self.act(entity, action)
+            entity.record_action(applied)
+            self.environment_system.apply(self, entity)
+
+            state_after = self.capture_state(entity)
+
+            event = Event(
+                tick = self.gtime.mtk, actor=entity.name, action=applied,
+                reason=reason, state_before=state_before, state_after=state_after,
+            )
+            self.event_log.record(event)
+        else:
+            self.environment_system.apply(self, entity)
     def process_entity(self, entity):
         if not isinstance(entity, Organism):
             return
